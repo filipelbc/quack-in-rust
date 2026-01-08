@@ -29,7 +29,9 @@ cp "$root_dir/duckdb-src/src/include/duckdb.h" .
 
 cp "$root_dir/duckdb-src/build/release/libduckdb_bundle.a" "libduckdb.a"
 
-# Uncomment the code below for the workaround
+cp "$root_dir/duckdb-src/build/release/src/libduckdb.so" .
+
+# Workaround extension loader not being included in the static lib above (shared lib works fine) when using DuckDB's main branch instead of v1.4.3
 
 #cp "$root_dir/duckdb-src/build/release/extension/CMakeFiles/duckdb_generated_extension_loader.dir/__/codegen/src/generated_extension_loader.cpp.o" .
 

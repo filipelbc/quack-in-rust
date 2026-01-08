@@ -1,13 +1,25 @@
-# Static linking DuckDB with extensions
+# Statically Linked DuckDB in Rust
 
-Sample code for statically linking DuckDB including extensions `httpfs` and `icu`.
+This is sample code showing how to build a Rust program statically linked to DuckDB, including some extensions.
 
 ## How to use
 
-Ensure you have `duckdb` cloned into `../duckdb-src`.
+Setup `vcpkg` in `../vcpkg`
+```sh
+git clone git@github.com:microsoft/vcpkg.git ../vcpkg
+cd ../vcpkg
+sh ./scripts/bootstrap.sh -disableMetrics
+```
 
-Run `./build-duckdb-libs.sh`.
+Clone `duckdb` into `../duckdb-src`, checkout desired commit.
+```sh
+git clone git@github.com:duckdb/duckdb.git ../duckdb-src
+cd ../duckdb-src
+git checkout v1.4.3
+```
 
-Run `./run.sh`
+Install other build dependencies. See [duckdb docs](https://duckdb.org/docs/stable/dev/building/linux).
 
-Uncomment the last lines in the script for the workaround.
+Run `./build-duckdb-libs.sh`. This will build a DuckDB static library into `../duckdb-lib`, including the desired extensions.
+
+Run `./run.sh` to build and run the code.

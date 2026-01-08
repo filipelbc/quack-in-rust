@@ -3,13 +3,13 @@ use duckdb::{Connection, Result};
 fn main() -> Result<()> {
     let conn = Connection::open_in_memory()?;
 
-    //show_extensions(&conn)?;
+    show_extensions(&conn)?;
 
     query_parquet_local(&conn)?;
 
     //query_parquet_remote(&conn)?;
 
-    show_extensions(&conn)?;
+    //show_extensions(&conn)?;
 
     Ok(())
 }
@@ -36,7 +36,7 @@ fn show_extensions(conn: &Connection) -> Result<()> {
 
 fn query_parquet_local(conn: &Connection) -> Result<()> {
     let data = conn
-        .prepare("SELECT * FROM '../data.parquet'")?
+        .prepare("SELECT * FROM './data.parquet'")?
         .query_map([], |row| {
             let a: i32 = row.get(0)?;
             let b: String = row.get(1)?;
